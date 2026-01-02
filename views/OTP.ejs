@@ -1,0 +1,46 @@
+<%layout("/layouts/boilerplate.ejs")%>
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
+    <h3 class="text-center mb-4">Enter OTP</h3>
+    <form action="/verify-otp" method="POST" id="otpForm">
+      <div class="d-flex justify-content-between mb-3">
+        <input type="text" class="form-control otp-input text-center" maxlength="1" name="otp1">
+        <input type="text" class="form-control otp-input text-center" maxlength="1" name="otp2">
+        <input type="text" class="form-control otp-input text-center" maxlength="1" name="otp3">
+        <input type="text" class="form-control otp-input text-center" maxlength="1" name="otp4">
+        <input type="text" class="form-control otp-input text-center" maxlength="1" name="otp5">
+        <input type="text" class="form-control otp-input text-center" maxlength="1" name="otp6">
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Verify OTP</button>
+    </form>
+    <div class="text-center mt-3">
+      <small>Didn’t receive OTP? <a href="/resend-otp">Resend</a></small>
+    </div>
+  </div>
+</div>
+
+<style>
+  .otp-input {
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+    margin: 0 5px;
+  }
+</style>
+
+<script>
+  const inputs = document.querySelectorAll(".otp-input");
+  inputs.forEach((input, index) => {
+    input.addEventListener("input", () => {
+      if (input.value.length === 1 && index < inputs.length - 1) {
+        inputs[index + 1].focus();
+      }
+    });
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Backspace" && index > 0 && !input.value) {
+        inputs[index - 1].focus();
+      }
+    });
+  });
+</script>

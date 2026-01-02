@@ -1,0 +1,43 @@
+<%layout("/layouts/boilerplate.ejs")%>
+<style>
+    body{
+        background-color: black;
+        color: white;
+    }
+</style>
+<div class="row offset-2 " style="margin-top: 10%;">
+    <h1 >Signup as Ngo </h1>
+    <div class="col-8">
+
+        <form action="/signup/ngo" method="post" novalidate class="needs-validation">
+<div class="mb-3">
+            <label class="form-label" for="username">Organization Name</label>
+            <input id ="organization" name="organization"  type="text" class="form-control" required>
+
+            
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="email">Email</label>
+            <input id ="email" name="email"  type="email" class="form-control" required>
+
+            
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="email">NgoId</label>
+            <input id ="Ngoid" name="Ngoid"  type="text" class="form-control" required>
+
+            
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label" for="password">Password</label>
+            <input id ="password" name="password"  type="password" class="form-control" required>
+
+            
+        </div>
+        <button class="btn btn-dark">SignUp</button>
+
+        </form>
+    </div>
+</div>

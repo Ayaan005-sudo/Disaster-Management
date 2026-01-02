@@ -1,0 +1,45 @@
+<%layout("/layouts/boilerplate.ejs")%>
+<div class="container-fluid  text-white p-4">
+  <h2 class="text-center mb-4">Disaster-Management Dashboard</h2>
+
+  <!-- Top Row: Total Incidents + Date -->
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <div class="p-3  rounded text-center " id="country-count-box" style="background-color: black;" >
+        <h5>Active Incidents</h5>
+        <h1>21</h1> 
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="p-3 bg-secondary rounded text-center">
+        <h5>Last updated on</h5>
+        <%= date %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Middle Row: Donut + Line Chart -->
+  <div class="row mb-4 text-center">
+    <div class="col-md-6">
+      <div class="bg-secondary rounded p-3">
+        <canvas id="disasterDonutChart" style="max-width: 300px;"></canvas>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="bg-secondary rounded p-3">
+        <canvas id="countryLineChart" style="max-width: 500px;"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom: Map -->
+  <div class="row">
+    <div class="col-12">
+      <div class="bg-secondary rounded p-2" style="height: 400px;">
+        <div id="map" style="width: 100%; height: 100%; border-radius: 10px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+       

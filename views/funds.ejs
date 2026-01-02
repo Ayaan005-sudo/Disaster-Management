@@ -1,0 +1,336 @@
+<%layout("/layouts/boilerplate.ejs")%>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <%if(role==="user"){%>
+       <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Track your funds</button>
+    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Donate</button>
+
+    <%}%>
+
+   <%if(role==="ngo"){%>
+ <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">RequestFunds</button>
+   <button class="nav-link" id="nav-report-tab" data-bs-toggle="tab" data-bs-target="#nav-report" type="button" role="tab" aria-controls="nav-report" aria-selected="false">ReportTracker</button>
+   <%}%>
+   
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+<!--track your funds tab-->
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+<h4 class="mt-3">Your Donations</h4>
+
+  <% if (donations.length === 0) { %>
+    <p class="text-muted">You have not donated yet.</p>
+  <% } else { %>
+
+    <table class="table table-striped mt-3">
+      <thead>
+        <tr>
+          <th>Amount</th>
+          <th>Payment ID</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% donations.forEach(d => { %>
+          <tr>
+            <td>₹ <%= d.amount / 100 %></td>
+            <td><%= d.paymentId %></td>
+           <td><%=d.username%></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+  <% } %>
+  </div>
+
+
+
+  <!-- donate tab -->
+   
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+    <h3 class="mt-3 mb-3">Donate for help</h3>
+
+    
+    <form class="needs-validation" novalidate>
+        <div class="row g-3">
+<div class="mb-3 col-12">
+  <label for="exampleFormControlInput1" class="form-label">Username</label>
+  <input type="text" class="form-control" id="user" placeholder="enter your name" required>
+   <div class="invalid-feedback">
+        Please choose a username.
+      </div>
+</div>
+<div class="mb-3 col-12">
+  <label for="exampleFormControlInput1" class="form-label">Email address</label>
+  <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+</div>
+<div class="mb-3 col-md-6">
+  <label for="exampleFormControlInput1" class="form-label">Phone</label>
+  <input type="number" class="form-control" id="mobile" placeholder="enter contact no." required>
+
+</div>
+<div class="mb-3 col-md-6">
+ <label for="amount" class="form-label">Amount</label><br>
+<div class="input-group ">
+   
+  <span class="input-group-text">INR</span>
+  <input type="number" class="form-control" aria-label="Amount (to the nearest rupee)" required min="10" id="amount">
+  <span class="input-group-text">.00</span>
+   <div class="invalid-feedback">
+        Please enter atleast rupee 10
+      </div>
+
+</div>
+</div>
+<div class="mb-3 col-12">
+    <label for="exampleFormControlInput1" class="form-label">Diaster Type</label>
+    <select class="form-select" aria-label="Default select example">
+ 
+  <option value="1">EarthQuake</option>
+  <option value="2">Floods</option>
+  <option value="3">Cyclone</option>
+  <option value="4">Other</option>
+</select>
+
+
+</div>
+
+<div class="mb-3 col-12">
+  <label for="exampleFormControlTextarea1" class="form-label">Give your message for particular location</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+<div class="col-md-2">
+<button type="button" class="btn btn-primary" onclick="payNow(event)">Submit</button>
+</div>
+
+</div>
+</form>
+
+</div>
+
+  </div>
+
+
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">...</div>
+
+
+
+  <div class="tab-pane fade" id="nav-report" role="tabpanel" aria-labelledby="nav-report-tab" tabindex="0">...</div>
+</div>
+
+
+
+
+
+
+<!----script file starts here-->
+
+
+
+<!-- <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    
+    async function payNow(event) {
+      event.preventDefault();
+      const amount = document.getElementById('amount').value;
+       const user = document.getElementById('user').value;
+ const email = document.getElementById('email').value;
+ const mobile=document.getElementById('mobile').value;
+
+      // Create order by calling the server endpoint
+      const response = await fetch('/create-order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ amount, currency: 'INR', receipt: 'receipt#1',  notes: {} })
+      });
+
+      const order = await response.json();
+      console.log(order);
+
+    //   Open Razorpay Checkout
+      const options = {
+        key: 'rzp_test_7qXokPkBYEGa2b', // Replace with your Razorpay key_id
+        amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        currency: 'INR',
+        name: 'Acme Corp',
+        description: 'Test Transaction',
+        order_id: order.id, // This is the order_id created in the backend
+        // callback_url: 'http://localhost:3000/payment', // Your success URL
+        prefill: {
+          name: user,
+          email: email,
+          contact: mobile,
+        },
+        theme: {
+          color: '#F37254'
+        },
+      
+      handler: function (response) {
+  fetch("/verify-payment", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      razorpay_payment_id: response.razorpay_payment_id,
+      razorpay_order_id: response.razorpay_order_id,
+      razorpay_signature: response.razorpay_signature,
+    }),
+  })
+    .then((res) => res.json())
+   .then((data) => {
+      if (data.success) {
+        alert("Payment verified successfully");
+
+        const id = response.razorpay_order_id;
+       
+
+       
+
+
+        fetch("/donate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            user,
+            email,
+            mobile,
+            amount,
+            id
+          })
+        }).then(res => res.json())
+        .then(data=>{
+          document.getElementById("donationForm").reset();
+           const trackTab = document.querySelector('#nav-home-tab');
+        const tab = new bootstrap.Tab(trackTab);
+tab.show();
+          }
+        );
+
+      } else {
+        alert("Payment verification failed");
+      }
+    });
+  }
+      }
+const rzp = new Razorpay(options);
+rzp.open();
+
+    }
+
+  </script> -->
+
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+async function payNow(event) {
+  event.preventDefault();
+
+  const amount = document.getElementById('amount').value;
+  const user = document.getElementById('user').value;
+  const email = document.getElementById('email').value;
+  const mobile = document.getElementById('mobile').value;
+
+  //  Create order
+  const response = await fetch('/create-order', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      amount,
+      currency: 'INR',
+      receipt: 'receipt#1',
+      notes: {}
+    })
+  });
+
+  const order = await response.json();
+  console.log(order);
+
+  //  Razorpay options
+  const options = {
+    key: "<%= apikey %>",
+    amount: order.amount,
+    currency: 'INR',
+    name: 'DISASTER-CORP',
+    description: 'Test Transaction',
+    order_id: order.id,
+    prefill: {
+      name: user,
+      email: email,
+      contact: mobile,
+    },
+    theme: {
+      color: '#F37254'
+    },
+
+    //  Payment handler
+    handler: async function (response) {
+      try {
+        // verify payment
+        const verifyRes = await fetch("/verify-payment", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_signature: response.razorpay_signature,
+          }),
+        });
+
+        const verifyData = await verifyRes.json();
+
+        if (!verifyData.success) {
+          alert("Payment verification failed");
+          return;
+        }
+
+        // save donation
+        const donateRes = await fetch("/donate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            user,
+            email,
+            mobile,
+            amount,
+            id: response.razorpay_payment_id
+          })
+        });
+
+        const donateData = await donateRes.json();
+
+        if (!donateData.success) {
+          alert("Donation save failed");
+          return;
+        }
+
+        //  UI actions
+ document.getElementById("donationForm").reset();
+        alert("Payment successful");
+
+       
+setTimeout(() => {
+        const trackTab = document.querySelector('#nav-home-tab');
+        const tab = new bootstrap.Tab(trackTab);
+        tab.show();
+
+        100})} catch (err) {
+        console.error(err);
+        alert("Something went wrong");
+      }
+    }
+  };
+
+  //  Open Razorpay INSIDE payNow
+  const rzp = new Razorpay(options);
+  rzp.open();
+}
+</script>

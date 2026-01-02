@@ -1,0 +1,15 @@
+<%layout("/layouts/boilerplate.ejs")%>
+<h1>hello</h1>
+<h3>The results are for <%=country%></h3>
+<%for(e of res1.events){%>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%=e.title%></h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary"><%=e.description%></h6>
+   
+    <a href=<%=e.link%> class="card-link"></a>
+  
+  </div>
+  
+</div>
+<%}%>

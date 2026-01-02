@@ -1,0 +1,73 @@
+<nav class="navbar bg-dark navbar-expand-md sticky-top">
+  <div class="container-fluid">
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+    <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+   
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 md-lg-0">
+        <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mainl" href="/funds">Funds</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  mainl" href="/emergency">Emergency</a>
+
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  mainl" href="#">Raise-Funds</a>
+          
+        </li>
+        <li class="nav-item">
+        <a class="nav-link  mainl" href="#">Submit-Report</a>
+        </li class="nav-item">
+         <li class="nav-item">
+        <a class="nav-link  mainl" href="#">About</a>
+        </li>
+
+      </ul>
+        
+        <ul class="navbar-nav mb-2 ms-auto md-lg-0">
+          <%if(!currUser){%>
+         <!-- <li class="nav-item">
+        <a class="nav-link  mainl" href="/signup">SignUp</a>
+        </li> -->
+        <div class="btn-group" role="group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      SignUp
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="/signup/user">Sign up as User</a></li>
+      <li><a class="dropdown-item" href="/signup/ngo">Sign up as Ngo</a></li>
+    </ul>
+  </div>
+
+         <!-- <li class="nav-item">
+        <a class="nav-link  mainl" href="/login">Login</a>
+         </li> -->
+         <div class="btn-group" role="group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      Login
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="/login/user">Login up as User</a></li>
+      <li><a class="dropdown-item" href="/login/ngo">Login up as Ngo</a></li>
+    </ul>
+  </div>
+         <%}%>
+         <%if(currUser){%>
+         <li class="nav-item">
+        <a class="nav-link  mainl" href="/logout">Logout</a>
+       
+        </li>
+        <%}%>
+
+</ul>
+  </div>
+</nav>

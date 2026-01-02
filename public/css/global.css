@@ -1,0 +1,98 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  line-height: 1.6;
+  font-size: 32px;
+  font-style: normal;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container{
+    max-width: 1200px !important;
+    margin: 0 auto;
+    padding: 0;
+    flex: 1;
+    flex-direction: column;
+}
+
+
+
+
+/* .navbar{
+    background-color: black;
+} */
+.nav-item .nav-link{
+    color:white;
+    
+   
+}
+
+.nav-item .mainl:hover{
+    background-color: white;
+    border-radius: 10px;
+}
+.navbar-collapse .navbar-nav{
+    gap: 20px;
+    
+}
+
+
+.container-fluid .navbar-toggler-icon{
+   filter: brightness(1) invert(5); /* White color */
+  padding-left: 0;
+
+
+}
+
+
+.f-info{
+    display: flex;
+    
+    height: 8rem;
+    
+    align-items: center;
+    flex-direction: column;
+    background-color:black;
+    justify-content: space-between;
+    width: 100% !important;
+    
+    color: antiquewhite;
+}
+.f-info-links a{
+    text-decoration: none;
+    color:white;
+    z-index: 1000;
+}
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+.f-info-links{
+    width: 100%;
+    text-align: center;
+    padding-bottom: 1rem;
+    color: beige;
+}
+.f-info-sociables{
+    width: 100%;
+    text-align: center;
+    
+}
+.f-info-sociables i{
+    font-size:  1.2rem;
+    margin-right: 1rem;
+    padding-top: 0.5rem;
+    z-index: 2;
+}
+footer{
+ width: 100%;
+  position: sticky;
+    
+}

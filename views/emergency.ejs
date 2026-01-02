@@ -1,0 +1,51 @@
+<%layout("/layouts/boilerplate.ejs")%>
+<style>
+    #eme{
+height: 100px;
+width: 500px;
+border: 10px solid black;
+border-radius: 20px;
+color: brown;
+text-align: center;
+margin-top: 10%;
+margin-left: 30%;
+display: flex;
+align-items: center;
+justify-content: center;
+
+    }
+    #eme a{
+        text-decoration: none;
+        color: red;
+        font-size: 30px;
+    }
+</style>
+
+<div id="eme">
+    <a href="#"><button onClick="sos()">🆘 EMERGENCY BUTTON</button></a>
+</div>
+
+<script>
+    function sos(){
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+    location.href = "tel:9351240746";
+
+     navigator.geolocation.getCurrentPosition(pos => {
+    const msg =
+      `EMERGENCY! Location: https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`;
+    location.href =
+      "sms:9351240746?body=" + encodeURIComponent(msg);
+  });
+  }
+else{
+  // message (family / friend)
+  navigator.geolocation.getCurrentPosition(pos => {
+    const msg =
+      `EMERGENCY! Location: https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`;
+    location.href =`mailto:ayaanah0786@gmail.com?subject=SOSALERT&body=${encodeURIComponent(msg)}`
+    alert("mail sent");
+ 
+    })
+}
+    } ;
+</script>

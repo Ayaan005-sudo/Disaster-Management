@@ -1,0 +1,37 @@
+<%layout("/layouts/boilerplate.ejs")%>
+<h1>YOU SHOUL PUR VALID INFORMATIONS IN THIS FOR THIS REQUEST WILL BE ONLY APPROVED AFTER THE INSPECTION OF REASON AND GOVT. APPROVED FILW YOUT ARE SUBMIITING!</h1>
+<form method=POST action="/raise-funds" class="needs-validation" novalidate encrypt="multipart/form-data">
+    <div class="row g-3">
+        <div class="mb-3 col-6">
+  <label for="exampleFormControlInput1" class="form-label">Reason :</label>
+  
+  <textarea class="form-control" id="reason" aria-label="With textarea" required></textarea>
+   <div class="invalid-feedback">
+        Please give valid reason!
+      </div>
+</div>
+      <div class="mb-3 col-12">
+
+        <label for="exampleFormControlInput1" class="form-label">Put pdf :</label>
+        <input type="file" id="pdfUrl" required/>
+        <div class="invalid-feedback">
+        Please give valid reason!
+      </div>
+      </div>
+      <div class="mb-3 col-md-6">
+ <label for="amount" class="form-label">Amount</label><br>
+<div class="input-group ">
+   
+  <span class="input-group-text">INR</span>
+  <input type="number" class="form-control" aria-label="Amount (to the nearest rupee)" required min="10" id="amount">
+  <span class="input-group-text">.00</span>
+   <div class="invalid-feedback">
+        Please enter atleast rupee 10
+      </div>
+
+</div>
+</div>
+      </div>
+<button type="Submit" >Request</button>
+    
+</form>
