@@ -12,9 +12,9 @@ next();
 }
 
 module.exports.isUser=(req,res,next)=>{
-    if(!req.isAuthenticated()||req.session.role!=="user"){
+    if(!req.isAuthenticated()||req.user.role!=="user"){
         req.session.url=req.originalUrl;
-        req.flash("failur","you msurt login as User");
+        req.flash("failur","you must login as User");
        return res.redirect("/login/user");
     }
     next()
@@ -22,9 +22,9 @@ module.exports.isUser=(req,res,next)=>{
 }
 
 module.exports.isNgo=(req,res,next)=>{
-    if(!req.isAuthenticated()||req.session.role!=="NGO"){
+    if(!req.isAuthenticated()||req.user.role!=="NGO"){
     req.session.url=req.originalUrl;
-     req.flash("failur","you msurt login as Ngo");
+     req.flash("failur","you must login as Ngo");
      return res.redirect("/login/Ngo");
     }
     next();

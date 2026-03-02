@@ -26,5 +26,5 @@ userId: {
     ref: "ngoACC", 
     require: true,
   }
-})
+});
 module.exports=mongoose.model("fundReq",fundReqSchema);

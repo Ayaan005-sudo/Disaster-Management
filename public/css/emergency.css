@@ -1,0 +1,54 @@
+/* ===== BASE ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #0f1115;
+  color: #e5e7eb;
+}
+
+/* ===== CENTER CONTAINER ===== */
+#eme {
+  height: 140px;
+  max-width: 520px;
+  margin: 120px auto;
+  background: #151821;
+  border: 2px solid #2a2f42;
+  border-radius: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== BUTTON ===== */
+#eme button {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 18px 28px;
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#eme button:hover {
+  background: #b91c1c;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+  #eme {
+    margin: 80px 20px;
+    height: 120px;
+  }
+
+  #eme button {
+    font-size: 18px;
+    padding: 16px 22px;
+  }
+}

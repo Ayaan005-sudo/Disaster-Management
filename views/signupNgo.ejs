@@ -1,13 +1,66 @@
 <%layout("/layouts/boilerplate.ejs")%>
 <style>
-    body{
-        background-color: black;
-        color: white;
-    }
+    body {
+    background-color: #0f0f0f;  
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+.col-6 {
+    background-color: #1c1c1c;   
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+
+.form-label {
+    color: #cccccc;
+    font-size: 14px;
+}
+
+
+.form-control {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+
+.form-control:focus {
+    border-color: #ffffff;
+    box-shadow: 0 0 5px rgba(255,255,255,0.4);
+    background-color: #2a2a2a;
+    color: white;
+}
+
+
+.btn-dark {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+
+.btn-dark:hover {
+    background-color: white;
+    color: black;
+}
 </style>
-<div class="row offset-2 " style="margin-top: 10%;">
+<div class="row d-flex justify-content-center mt-4 p-2">
     <h1 >Signup as Ngo </h1>
-    <div class="col-8">
+    <div class="col-6">
 
         <form action="/signup/ngo" method="post" novalidate class="needs-validation">
 <div class="mb-3">
